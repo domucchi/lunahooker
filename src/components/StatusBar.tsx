@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { SettingsSheet } from "./SettingsSheet";
 import { useSettings } from "../contexts/SettingsContext";
 import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
+import { formatDuration, getTotalChars, getCharsPerHour } from "../utils/stats";
 
 type StatusBarProps = {
   isConnected: boolean;
@@ -19,24 +20,28 @@ type StatusBarProps = {
 export const StatusBar = ({ isConnected, timer, onToggleConnection, isListening, onToggleListening, onClearStorage, isFocusMode, onToggleFocusMode, messages }: StatusBarProps) => {
   const { settings } = useSettings();
   const { showTimer, showCharCount, showSpeed, enableFocusMode } = settings;
-  const totalChars = messages.reduce((sum, msg) => sum + msg.text.length, 0);
-  const charsPerHour = timer > 0 ? Math.round((totalChars / timer) * 3600) : 0;
+  const totalChars = getTotalChars(messages);
+  const charsPerHour = getCharsPerHour(messages, timer);
+  const formattedTime = formatDuration(timer);
   const lines = messages.length;
-  
-  const hours = Math.floor(timer / 3600).toString().padStart(2, '0');
-  const minutes = Math.floor((timer % 3600) / 60).toString().padStart(2, '0');
-  const seconds = (timer % 60).toString().padStart(2, '0');
 
+    const Stats = () => {
+        return (
+            <div className="flex justify-center space-x-2 text-lg">
+            {(enableFocusMode && settings.showStatsInFocus || !enableFocusMode) && showTimer && <span>{formattedTime}</span>}
+            {(enableFocusMode && settings.showStatsInFocus || !enableFocusMode) && showSpeed && <span>({charsPerHour}/h)</span>}
+            {(enableFocusMode && settings.showStatsInFocus || !enableFocusMode) && showCharCount && <span>{totalChars} / {lines}</span>}
+          </div>
+        )
+    }
   return (
     <div className="fixed top-0 left-0 w-full grid grid-cols-3 items-center text-sm text-muted-foreground px-8 py-2 bg-background z-50">
       {isFocusMode ? (
         <>
           <div />
-          <div className="flex justify-center space-x-2 text-lg">
-            {settings.showStatsInFocus && showTimer && <span>{hours}:{minutes}:{seconds}</span>}
-            {settings.showStatsInFocus && showSpeed && <span>({charsPerHour}/h)</span>}
-            {settings.showStatsInFocus && showCharCount && <span>{totalChars} / {lines}</span>}
-          </div>
+            <div className="flex justify-center space-x-2 text-lg">
+                <Stats />
+            </div>
           <div className="flex justify-end space-x-2 items-center">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -51,11 +56,7 @@ export const StatusBar = ({ isConnected, timer, onToggleConnection, isListening,
       ) : (
         <>
           <div />
-          <div className="flex justify-center space-x-2 text-lg">
-            {showTimer && <span>{hours}:{minutes}:{seconds}</span>}
-            {showSpeed && <span>({charsPerHour}/h)</span>}
-            {showCharCount && <span>{totalChars} / {lines}</span>}
-          </div>
+          <Stats />
           <div className="flex justify-end space-x-4 items-center">
             <Tooltip>
               <TooltipTrigger asChild>
