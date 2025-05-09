@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { Message } from '../types/message';
-import { WS_URL } from '../constants/websocket';
+import { useSettings } from '../contexts/SettingsContext';
 import { parseLunaMessage } from '../utils/messageParser';
 
 type UseWebSocketReturn = {
@@ -14,6 +14,7 @@ type UseWebSocketReturn = {
 }
 
 export const useWebSocket = (): UseWebSocketReturn => {
+  const { settings } = useSettings();
   const [messages, setMessages] = useState<Message[]>(() => {
     try {
       const stored = localStorage.getItem("luna_messages");
@@ -38,7 +39,7 @@ export const useWebSocket = (): UseWebSocketReturn => {
         wsRef.current.close();
       }
 
-      const ws = new WebSocket(WS_URL);
+      const ws = new WebSocket(settings.websocketUrl);
       wsRef.current = ws;
 
       ws.onopen = () => {

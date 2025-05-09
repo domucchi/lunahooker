@@ -10,6 +10,7 @@ export type AppSettings = {
   maxLines: number;
   fontSize: number;
   websocketUrl: string;
+  messageSpacing: number;
 };
 
 const SETTINGS_KEY = 'luna_settings';
@@ -23,6 +24,7 @@ const defaultSettings: AppSettings = {
   maxLines: 100,
   fontSize: 14,
   websocketUrl: WS_URL,
+  messageSpacing: 8,
 };
 
 type SettingsContextType = {
