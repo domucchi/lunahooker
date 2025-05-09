@@ -4,6 +4,8 @@ lunahooker is a web-based interface for the [LunaTranslator](https://github.com/
 
 **Hosted at:** [lunahooker.netlify.app](https://lunahooker.netlify.app)
 
+**Note for Brave users:** Brave Shields may block the WebSocket connection. Disable Shields for this site (click the Brave icon in the address bar) to allow the connection.
+
 **Disclaimer:** This project is not affiliated with or endorsed by the LunaTranslator developers.
 
 ## Features
@@ -33,7 +35,7 @@ pnpm install
 pnpm dev
 ```
 
-Open http://localhost:5173 in your browser to use LunaWeb.
+Open http://localhost:5173 in your browser to use lunahooker.
 
 ### Build
 
