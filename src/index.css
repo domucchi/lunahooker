@@ -41,6 +41,7 @@
   --accent-foreground: #ffffff;
   --destructive: #ef4444;    /* Red for destructive actions */
   --success: #22c55e;        /* Green for success states */
+  --info: #0ea5e9;           /* Blue for info states */
   
   /* Borders and outlines */
   --border: #3f3f46;
@@ -70,6 +71,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-success: var(--success);
+  --color-info: var(--info);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);

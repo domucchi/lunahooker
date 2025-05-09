@@ -11,6 +11,10 @@ export type AppSettings = {
   fontSize: number;
   websocketUrl: string;
   messageSpacing: number;
+  enableFocusMode: boolean;
+  focusFontSize: number;
+  showStatsInFocus: boolean;
+  enableEditInFocus: boolean;
 };
 
 const SETTINGS_KEY = 'luna_settings';
@@ -22,9 +26,13 @@ const defaultSettings: AppSettings = {
   showCharCount: true,
   showSpeed: true,
   maxLines: 100,
-  fontSize: 14,
+  fontSize: 24,
   websocketUrl: WS_URL,
   messageSpacing: 8,
+  enableFocusMode: true,
+  focusFontSize: 24,
+  showStatsInFocus: true,
+  enableEditInFocus: true,
 };
 
 type SettingsContextType = {

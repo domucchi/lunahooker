@@ -11,6 +11,7 @@ type UseWebSocketReturn = {
   isListening: boolean;
   toggleListening: () => void;
   clearStorage: () => void;
+  editMessage: (index: number, newText: string) => void;
 }
 
 export const useWebSocket = (): UseWebSocketReturn => {
@@ -159,6 +160,11 @@ export const useWebSocket = (): UseWebSocketReturn => {
     setIsListening(false);
   };
 
+  // Allow editing of an existing message
+  const editMessage = (index: number, newText: string) => {
+    setMessages(prev => prev.map((msg, i) => i === index ? { ...msg, text: newText } : msg));
+  };
+
   return {
     messages,
     isConnected,
@@ -166,6 +172,7 @@ export const useWebSocket = (): UseWebSocketReturn => {
     isListening,
     toggleConnection,
     toggleListening,
-    clearStorage
+    clearStorage,
+    editMessage,
   };
 }; 
