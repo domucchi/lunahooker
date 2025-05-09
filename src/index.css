@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #ffffff;
+  background-color: #18181b;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Base colors */
+  --background: #18181b;      /* Dark neutral background */
+  --foreground: #ffffff;      /* White text */
+  
+  /* UI elements */
+  --card: #27272a;           /* Slightly lighter neutral for cards */
+  --card-foreground: #ffffff;
+  --popover: #27272a;
+  --popover-foreground: #ffffff;
+  
+  /* Interactive elements */
+  --primary: #71717a;        /* Neutral for primary actions */
+  --primary-foreground: #ffffff;
+  --secondary: #3f3f46;      /* Darker neutral for secondary elements */
+  --secondary-foreground: #ffffff;
+  
+  /* States */
+  --muted: #27272a;          /* Muted background */
+  --muted-foreground: #a1a1aa;
+  --accent: #3f3f46;         /* Accent color */
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;    /* Red for destructive actions */
+  --success: #22c55e;        /* Green for success states */
+  
+  /* Borders and outlines */
+  --border: #3f3f46;
+  --input: #3f3f46;
+  --ring: #71717a;
+}
+
+@theme inline {
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [role='button']:disabled {
+    cursor: default;
+  }
+}
