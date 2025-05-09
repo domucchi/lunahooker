@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# lunahooker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+lunahooker is a web-based interface for the [LunaTranslator](https://github.com/HIllya51/LunaTranslator) hook service. It connects over WebSocket to stream text in real time and offers rich controls and metrics for session management.
 
-Currently, two official plugins are available:
+**Hosted at:** [lunahooker.netlify.app](https://lunahooker.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Disclaimer:** This project is not affiliated with or endorsed by the LunaTranslator developers.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Real-time message streaming via the LunaTranslator WebSocket hook
+- Session timer, total character count, and characters-per-hour metrics
+- Inline and focus-mode editing of captured messages
+- Focus mode for distraction-free reading
+- Persistent, customizable settings (e.g., stats toggles, max lines, font sizes, focus options)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16+)
+- pnpm (or npm)
+
+### Installation
+
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+pnpm dev
 ```
+
+Open http://localhost:5173 in your browser to use LunaWeb.
+
+### Build
+
+```bash
+pnpm build
+```
+
+## Configuration & Settings
+
+Click the **Settings** (gear) icon in the status bar to configure:
+
+- Toggle display of timer, character count, and speed
+- Reverse line order and limit displayed lines
+- Adjust font sizes for normal and focus modes
+- Enable or disable focus mode and in-focus editing
+- Customize the WebSocket endpoint URL
+
+All preferences are saved to `localStorage` automatically.
+
+## License
+
+This project is licensed under the MIT License.
