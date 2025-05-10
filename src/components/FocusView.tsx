@@ -19,7 +19,7 @@ export const FocusView = ({ messages, editMessage }: FocusViewProps) => {
   const [text, setText] = useState<string>(messages[latestIndex]?.text || '');
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
+    <div className="flex flex-col items-top w-full h-full">
       {isEditing ? (
         <Textarea
           value={text}
@@ -47,7 +47,7 @@ export const FocusView = ({ messages, editMessage }: FocusViewProps) => {
           onDoubleClick={() => enableEditInFocus && setIsEditing(true)}
           className="text-center w-full"
         >
-          {messages[latestIndex]?.text || ''}
+          {messages[latestIndex]?.text || 'Test'}
         </div>
       )}
     </div>
