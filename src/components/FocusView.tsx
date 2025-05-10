@@ -47,7 +47,7 @@ export const FocusView = ({ messages, editMessage }: FocusViewProps) => {
           onDoubleClick={() => enableEditInFocus && setIsEditing(true)}
           className="text-center w-full"
         >
-          {messages[latestIndex]?.text || 'Test'}
+          {messages[latestIndex]?.text || ''}
         </div>
       )}
     </div>
